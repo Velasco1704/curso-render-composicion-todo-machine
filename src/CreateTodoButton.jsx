@@ -1,11 +1,16 @@
 import React from "react";
-import './styles/CreateTodoButton.css';
-
+import "./styles/CreateTodoButton.css";
 
 const CreateTodoButton = () => {
+  const handleClick = () => {
+    alert('Click')
+  };
+
   return (
     <>
-      <button className="CreateTodoButton">+</button>
+      <button className="CreateTodoButton" onClick={handleClick}>
+        +
+      </button>
     </>
   );
 };

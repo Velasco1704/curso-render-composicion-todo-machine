@@ -9,14 +9,6 @@ const Efecto = () => {
         <div className='burbuja'></div>
         <div className='burbuja'></div>
         <div className='burbuja'></div>
-        <div className='burbuja'></div>
-        <div className='burbuja'></div>
-        <div className='burbuja'></div>
-        <div className='burbuja'></div>
-        <div className='burbuja'></div>
-        <div className='burbuja'></div>
-        <div className='burbuja'></div>
-        <div className='burbuja'></div>
     </div>
   );
 };
