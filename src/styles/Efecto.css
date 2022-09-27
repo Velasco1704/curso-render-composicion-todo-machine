@@ -62,3 +62,42 @@
     opacity: 0;
   }
 }
+
+@media screen and (max-width: 425px) {
+  @keyframes burbujas {
+    0%{
+      bottom:0%;
+      opacity: 0;
+    }
+    30%{
+      transform: translateX(15px);
+    }
+    50%{
+      opacity: .4;
+  
+    }
+    100%{
+      bottom: 100vh;
+      opacity: 0;
+    }
+  }
+}
+@media screen and (width: 320px) {
+  @keyframes burbujas {
+    0%{
+      bottom:0%;
+      opacity: 0;
+    }
+    30%{
+      transform: translateX(5px);
+    }
+    50%{
+      opacity: .4;
+  
+    }
+    100%{
+      bottom: 100vh;
+      opacity: 0;
+    }
+  }
+}
