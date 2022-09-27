@@ -1,5 +1,6 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import useLocalStorage from "./hooks/useLocalStorage";
 import TodoCounter from "./TodoCounter";
 import TodoSearch from "./TodoSearch";
 import TodoList from "./TodoList";
@@ -16,16 +17,13 @@ import "./styles/App.css";
 // ];
 
 function App() {
-  const localStorageTodos = localStorage.getItem('TODOS_V1');
-  let parsedTodos;
-  if(!localStorageTodos) {
-    localStorage.setItem('TODOS_V1', JSON.stringify([]));
-    parsedTodos = [];
-  } else {
-    parsedTodos = JSON.parse(localStorageTodos);
-  }
+  const {
+    item: todos,
+    saveItem: saveTodos,
+    loading,
+    error,
+  } = useLocalStorage("TODOS_V1", []);
 
-  const [todos, setTodos] = useState(parsedTodos);
   const [searchValue, setSearchValue] = useState("");
   const completedTodoCounter = todos.filter(
     (item) => item.completed === true
@@ -43,21 +41,15 @@ function App() {
     });
   }
 
-  const saveTodos = (newTodos) => {
-    const stringiFiedTodos = JSON.stringify(newTodos);
-    localStorage.setItem('TODOS_V1', stringiFiedTodos);
-    setTodos(newTodos);
-  };
-
   const completedTodo = (text) => {
     const todosIndex = todos.findIndex((todo) => todo.text === text);
-    const newTodos = [...todos, ];
+    const newTodos = [...todos];
     newTodos[todosIndex].completed = true;
     saveTodos(newTodos);
   };
   const deleteTodo = (text) => {
     const todosIndex = todos.findIndex((todo) => todo.text === text);
-    const newTodos = [...todos, ];
+    const newTodos = [...todos];
     newTodos.splice(todosIndex, 1);
     saveTodos(newTodos);
   };
@@ -67,6 +59,9 @@ function App() {
       <TodoCounter total={totalTodos} completed={completedTodoCounter} />
       <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
       <TodoList>
+        {error && <p>Desesperate, hubo un error...</p>}
+        {loading && <p>Estamos cargando, no desesperes...</p>}
+        {!loading && !searchTodos.length && <p>¡Crea tu primer TODO!</p>}
         {searchTodos.map((item) => (
           <TodoItem
             key={item.text}
