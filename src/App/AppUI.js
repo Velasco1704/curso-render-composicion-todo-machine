@@ -15,6 +15,7 @@ function AppUI() {
     <>
       <TodoCounter />
       <TodoSearch />
+      <CreateTodoButton setOpenModal={setOpenModal}/>
           <TodoList>
             {error && <p>Desesperate, hubo un error...</p>}
             {loading && <p>Estamos cargando, no desesperes...</p>}
@@ -34,7 +35,7 @@ function AppUI() {
               <TodoForm />
             </Modal>
           )}
-      <CreateTodoButton setOpenModal={setOpenModal}/>
+
     </>
   );
 }
