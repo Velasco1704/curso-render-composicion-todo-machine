@@ -6,6 +6,7 @@ export const TodoContext = createContext();
 
 export function TodoProvider(props) {
   const { item: todos, saveItem: saveTodos, loading, error, } = useLocalStorage("TODOS_V1", []);
+  const [openModal, setOpenModal] = useState(false);
 
   const [searchValue, setSearchValue] = useState("");
   const completedTodoCounter = todos.filter(
@@ -23,6 +24,15 @@ export function TodoProvider(props) {
       return todoText.includes(searchText);
     });
   }
+
+  const addTodo = (text) => {
+    const newTodos = [...todos];
+    newTodos.push({
+      text,
+      completed: false,
+    })
+    saveTodos(newTodos);
+  };
 
   const completedTodo = (text) => {
     const todosIndex = todos.findIndex((todo) => todo.text === text);
@@ -47,6 +57,9 @@ export function TodoProvider(props) {
       searchTodos,
       completedTodo,
       deleteTodo,
+      openModal,
+      setOpenModal,
+      addTodo
     }}>
         {props.children}
     </TodoContext.Provider>

@@ -4,8 +4,6 @@ import {TodoProvider} from '../Context/'
 import "../styles/App.css";
 
 function App() {
-
-
   return (
     <>
         <TodoProvider>
