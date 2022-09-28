@@ -7,6 +7,9 @@ import TodoList from "../components/TodoList";
 import TodoItem from "../components/TodoItem";
 import CreateTodoButton from "../components/CreateTodoButton.jsx";
 import TodoForm from "../components/TodoForm";
+import TodoLoading from '../components/TodoLoading';
+import EmptyTodo from '../components/EmptyTodo';
+import TodoError from '../components/TodoError';
 import Modal from "../Modal";
 
 function AppUI() {
@@ -17,9 +20,9 @@ function AppUI() {
       <TodoSearch />
       <CreateTodoButton setOpenModal={setOpenModal}/>
           <TodoList>
-            {error && <p>Desesperate, hubo un error...</p>}
-            {loading && <p>Estamos cargando, no desesperes...</p>}
-            {!loading && !searchTodos.length && <p>¡Crea tu primer TODO!</p>}
+            {error && <TodoError error={error} />}
+            {loading && <TodoLoading />}
+            {!loading && !searchTodos.length && <EmptyTodo />}
             {searchTodos.map((item) => (
               <TodoItem
                 key={item.text}

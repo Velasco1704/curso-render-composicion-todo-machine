@@ -1,0 +1,34 @@
+.container-span-loading{
+  margin-top: 10vh;
+  padding: 0;
+}
+.icon-loading{
+  font-size: 20vw;
+}
+.text-loading{
+  font-size: 10vw;
+}
+@media screen and (min-width: 768px) {
+  .icon-loading{
+    font-size: 10vw;
+  }
+  .text-loading{
+    font-size: 5vw;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .icon-loading{
+    font-size: 8vw;
+  }
+  .text-loading{
+    font-size: 3vw;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .icon-loading{
+    font-size: 5vw;
+  }
+  .text-loading{
+    font-size: 2.5vw;
+  }
+}
