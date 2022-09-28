@@ -4,7 +4,7 @@ import { TodoContext } from '../Context';
 import '../styles/TodoSearch.css'
 
 const TodoSearch = () => {
-  const { searchValue, setSearchValue } = useContext(TodoContext)
+  const { searchValue, setSearchValue, loading } = useContext(TodoContext)
   const onSearchValue = (event) => {
     console.log(event.target.value);
     setSearchValue(event.target.value)
@@ -12,7 +12,7 @@ const TodoSearch = () => {
 
   return (
     <>
-      <input className="TodoSearch" placeholder="Buscar..." value={searchValue} onChange={onSearchValue}/>
+      <input className="TodoSearch" placeholder="Buscar..." value={searchValue} onChange={onSearchValue} disabled={loading}/>
     </>
   );
 };
